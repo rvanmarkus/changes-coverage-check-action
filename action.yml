@@ -4,7 +4,7 @@ inputs:
   working-directory:
     description: Base path / working directory for coverage files and output
     required: false
-    default: /home/runner
+    default: ""
   coverage-report-file:
     description: Input file with coverage report. json c8/v8 report
     required: false

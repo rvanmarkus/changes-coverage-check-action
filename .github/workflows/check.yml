@@ -28,11 +28,9 @@ jobs:
 
       - name: 🖌️ Check Coverage
         uses: ./
-        with:
-          working-directory: ${{ env.GITHUB_WORKSPACE }}
 
       - name: 📈 Publish coverage report
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           recreate: true
-          path: ${{ env.GITHUB_WORKSPACE }}/coverage-comment.md
+          path: coverage-comment.md

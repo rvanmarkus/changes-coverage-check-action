@@ -26,6 +26,13 @@ jobs:
         run: |
           git diff -U0 origin/${{ github.event.pull_request.base.ref }}...HEAD --output /home/runner/diff
 
+      - run: |
+          pwd
+          ls -al /home/runner
+          ls -al ./coverage
+          cat /home/runner/diff
+          echo $GITHUB_WORKSPACE
+          echo $HOME
       - name: 🖌️ Check Coverage
         uses: ./
 

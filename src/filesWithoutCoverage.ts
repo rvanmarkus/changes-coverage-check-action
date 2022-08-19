@@ -72,6 +72,7 @@ function filesThatNeedCoverage(
                     needCoverage.push(file);
                 } else {
                     doNot.push(file);
+                    console.log(6);
                 }
                 return [needCoverage, doNot];
             },

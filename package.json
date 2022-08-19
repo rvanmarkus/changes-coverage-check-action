@@ -1,0 +1,24 @@
+{
+    "name": "fe-coverage-check",
+    "version": "1.0.0",
+    "description": "",
+    "main": "lib/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "tsc",
+        "package": "npm run build && ncc build --source-map"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@actions/core": "^1.6.0",
+        "@actions/github": "^5.0.0",
+        "parse-diff": "^0.9.0"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.21",
+        "@vercel/ncc": "^0.33.3",
+        "typescript": "^4.6.2"
+    }
+}

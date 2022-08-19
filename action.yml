@@ -1,0 +1,9 @@
+name: 'FE coverage check'
+description: 'Check coverage on files modified/added'
+inputs:
+  working-directory:
+    description: Base path / working directory for coverage files and output
+    required: true
+runs:
+  using: 'node16'
+  main: 'dist/index.js'

@@ -24,20 +24,15 @@ jobs:
 
       - name: ➕ Create diff
         run: |
-          git diff -U0 origin/${{ github.event.pull_request.base.ref }}...HEAD --output /home/runner/diff
+          git diff -U0 origin/${{ github.event.pull_request.base.ref }}...HEAD --output diff
 
-      - run: |
-          pwd
-          ls -al /home/runner
-          ls -al ./coverage
-          cat /home/runner/diff
-          echo $GITHUB_WORKSPACE
-          echo $HOME
       - name: 🖌️ Check Coverage
         uses: ./
+        with:
+          working-directory: ${{ env.GITHUB_WORKSPACE }}
 
       - name: 📈 Publish coverage report
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           recreate: true
-          path: /home/runner/coverage-comment.md
+          path: ${{ env.GITHUB_WORKSPACE }}/coverage-comment.md

@@ -3,12 +3,11 @@ import fs from "fs";
 import path from "path";
 import { CoverageReport, determineFilesWithoutCoverage } from "./filesWithoutCoverage";
 
-const defaultCoverageReportFile = "coverage-final.json";
-const defaultMarkdownFile = "coverage-comment.md";
-const defaultDiffFile = "diff";
-const defaultPrefix = "services/portal"; // Very portal specific atm
-const basePath = getInput("working-directory", { required: true });
-
+const defaultCoverageReportFile = getInput("coverage-report-file",  { required: false });
+const defaultMarkdownFile = getInput("markdown-output-file",  { required: false });
+const defaultDiffFile = getInput("diff-file",  { required: false });
+const defaultPrefix = getInput("prefix-coverage-report-files",  { required: false });
+const basePath = getInput("working-directory", { required: false });
 
 try {
     run();

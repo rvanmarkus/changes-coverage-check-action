@@ -3,7 +3,24 @@ description: 'Check coverage on files modified/added'
 inputs:
   working-directory:
     description: Base path / working directory for coverage files and output
-    required: true
+    required: false
+    default: home/runner
+  coverage-report-file:
+    description: Input file with coverage report. json c8/v8 report
+    required: false
+    default: coverage-final.json
+  markdown-output-file:
+    description: Output markdown file
+    required: false
+    default: coverage-comment.md
+  diff-file:
+    description: Input diff file
+    required: false
+    default: diff
+  prefix-coverage-report-files:
+    description: Prefix coverage report filenames, for example if coverage report is made in a different directory structure than the diff.
+    required: false
+    default: ""
 runs:
   using: 'node16'
   main: 'lib/index.js'

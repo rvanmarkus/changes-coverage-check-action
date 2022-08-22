@@ -70,9 +70,10 @@ function filesThatNeedCoverage(
             ([needCoverage, doNot], file) => {
                 if (coverage.has(file.name)) {
                     needCoverage.push(file);
+                    console.log(file.name)
                 } else {
                     doNot.push(file);
-                    console.log(6);
+                    console.log(file);
                 }
                 return [needCoverage, doNot];
             },

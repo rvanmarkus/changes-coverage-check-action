@@ -1,0 +1,36 @@
+on: pull_request
+
+name: Check (eat our own dogfood)
+jobs:
+  check:
+    name: Check Action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with: 
+          fetch-depth: 0
+
+      - name: Install Deps
+        run: yarn --frozen-lockfile
+
+      - name: Run Tests
+        run: yarn test --coverage
+
+      - name: Build and remove dev dependencies
+        run: |
+          yarn build
+          yarn --frozen-lockfile --production
+
+      - name: ➕ Create diff
+        run: |
+          git diff -U0 origin/${{ github.event.pull_request.base.ref }}...HEAD --output diff
+
+      - name: 🖌️ Check Coverage
+        uses: ./
+
+      - name: 📈 Publish coverage report
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          recreate: true
+          path: coverage-comment.md

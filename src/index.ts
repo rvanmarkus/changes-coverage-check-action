@@ -1,13 +1,23 @@
 import { getInput, setFailed } from "@actions/core";
 import fs from "fs";
 import path from "path";
+import { env } from "process";
 import { CoverageReport, determineFilesWithoutCoverage } from "./filesWithoutCoverage";
 
 const defaultCoverageReportFile = getInput("coverage-report-file",  { required: false });
 const defaultMarkdownFile = getInput("markdown-output-file",  { required: false });
 const defaultDiffFile = getInput("diff-file",  { required: false });
 const defaultPrefix = getInput("prefix-coverage-report-files",  { required: false });
-const basePath = getInput("working-directory", { required: false });
+
+const basePathInput = getInput("working-directory", { required: false });
+const basePath = basePathInput === "" ? env.GITHUB_WORKSPACE! : basePathInput;
+
+console.log("Running with parameters:")
+console.log(`coverage-report-file: ${defaultCoverageReportFile}`)
+console.log(`markdown-output-file: ${defaultMarkdownFile}`)
+console.log(`diff-file: ${defaultDiffFile}`)
+console.log(`prefix-coverage-report-files: ${defaultPrefix}`)
+console.log(`working-directory: ${basePath}`)
 
 try {
     run();

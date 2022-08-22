@@ -33,6 +33,7 @@ export function determineFilesWithoutCoverage(filePrefix: string, diffString: st
         const uncoverdLines = filesWithUncoveredLines.get(file.fileName);
 
         if (!uncoverdLines) {
+            console.log(`File not un coverage report: ${file.fileName}`)
             throw Error(`File not un coverage report: ${file.fileName}`);
         }
 
